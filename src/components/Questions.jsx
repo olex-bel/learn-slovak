@@ -30,7 +30,7 @@ export default function Questions({ questions, handlerShowResult }) {
           spacing={2}
         >
             <Typography variant='h4' mt={3}>Question: {currentQuestionIndex + 1} out of {questions.length}</Typography>
-            <QuestionCard key={currentQuestionIndex}
+            <QuestionCard key={currentQuestion.id}
                 question={currentQuestion.question} 
                 translation={currentQuestion.translation} 
                 correctAnswer={currentQuestion.answer}

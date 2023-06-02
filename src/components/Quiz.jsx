@@ -14,9 +14,9 @@ export default function Quiz() {
   
     useEffect(() => {
       const getQuestions = function () {
-        const selectedQuestions = shuffleArray(data.topics.verbs.questions)
-          .slice(0, 2).map((question) => {         
-            question.hint = data.topics.verbs.rusles[question.ruleId];
+        const selectedQuestions = shuffleArray(data.questions)
+          .slice(0, 10).map((question) => {         
+            question.hint = data.rusles[question.ruleId];
             return question;
           });
   
