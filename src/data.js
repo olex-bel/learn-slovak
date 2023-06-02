@@ -209,7 +209,7 @@ export default {
         {
           id: 24,
           question: 'Čie je to auto? (mama)',
-          answer: 'manino',
+          answer: 'mamino',
           translation: 'Whose car is this?',
           ruleId: 7,
           topecId: 2

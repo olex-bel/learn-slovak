@@ -17,7 +17,7 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
             return;
         }
         
-        setUserAnswer(answer);
+        setUserAnswer(answer.toLowerCase());
         setShowHint(false);
     }
 
