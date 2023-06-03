@@ -26,18 +26,22 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
     }
 
     return (
-        <Card>
+        <Card sx={
+            {
+                width: { xs: '360px' },
+            }
+        }>
             <CardContent sx={{
-                minHeight: "150px",
+                minHeight: '180px',
             }}>
                 <Stack 
                     justifyContent="center"
                     alignItems="center"
                 >
                     <Box mt="1.5rem">
-                        {reactStringReplace(question, /(\(.+\))/, (match) => <>{match}<TextField variant="standard" sx={{input: {textAlign: "center"}}} inputRef={userInputRef} /></> )}
+                        {reactStringReplace(question, /(\(.+\))/, (match) => <>{match}<TextField variant="standard" sx={{input: {textAlign: "center"}}} inputRef={userInputRef} size="small"/></> )}
                     </Box>
-                    <Box>({translation})</Box>
+                    <Box mt="0.8rem">({translation})</Box>
                     {showHint && <Typography variant="body2" mt="2rem" color="success.main">{hint}</Typography>}
                     {isAnswered && 
                         <Box>

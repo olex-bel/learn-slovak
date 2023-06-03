@@ -1,39 +1,47 @@
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Questions from './Questions'
-import QuizResult from './QuizResult'
-import data from '../data'
+
 import { shuffleArray } from '../utils'
-import { Stack } from '@mui/material'
+import { Stack, Button } from '@mui/material'
 
-export default function Quiz() {
-    const [questions, setQuestions] = useState(null);
-    const [finished, setFinished] = useState(false);
-    const [quizScore, setQuizScore] = useState(0);
-    const [quizCompletionCount, setQuizCompletionCount] = useState(1);
-  
+export default function Quiz( { questions, rules, selectedTopic } ) {
+    const [quizQuestions, setQuizQuestions] = useState([]);
+    const [questionsBySelectedTopic, setQuestionsBySelectedTopic] = useState([]);
+
     useEffect(() => {
-      const getQuestions = function () {
-        const selectedQuestions = shuffleArray(data.questions)
-          .slice(0, 10).map((question) => {         
-            question.hint = data.rusles[question.ruleId];
-            return question;
-          });
-  
-        setQuestions(selectedQuestions);
-      };
-  
-      getQuestions();
-    }, [quizCompletionCount]);
+      if (selectedTopic !== 0) {
+        setQuestionsBySelectedTopic(questions.filter((question) => question.topicId === selectedTopic));
+      } else {
+        setQuestionsBySelectedTopic([...questions]);
+      }
 
-    const showResult = function (score) {
-      setQuizScore(score);
-      setFinished(true);
-    }
+      setQuizQuestions([]);
+    }, [selectedTopic])
 
-    const restartQuiz = function () {
-      setQuizCompletionCount(quizCompletionCount + 1);
-      setFinished(false);
+    const startQuiz = function () {
+      setQuizQuestions(shuffleArray(questionsBySelectedTopic).slice(0, 10).map((item) => ({
+          ...item,
+          hint: rules[item.ruleId],
+        })
+      ));
+    };
+
+    if (quizQuestions.length === 0) {
+      return (
+        <Button 
+            size="large" 
+            variant="outlined" 
+            startIcon={<PlayArrowIcon/>} 
+            onClick={() => startQuiz()}
+            sx={{
+                mt: '2rem',
+            }}
+        >
+          Start
+        </Button>
+      )
     }
 
     return (
@@ -41,14 +49,8 @@ export default function Quiz() {
           justifyContent="center"
           alignItems="center"
           spacing={2}
-        >
-            {questions && (
-              !finished? 
-                <Questions key={quizCompletionCount} questions={questions} handlerShowResult={showResult} />
-                :
-                <QuizResult score={quizScore} handlerRestartQuiz={restartQuiz} />
-              )
-            }
+        >  
+          <Questions questions={quizQuestions} />
         </Stack>
     )
 }

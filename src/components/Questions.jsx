@@ -2,8 +2,9 @@
 import { Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import QuestionCard from "./QuestionCard";
+import QuizResult from './QuizResult'
 
-export default function Questions({ questions, handlerShowResult }) {
+export default function Questions({ questions, handlerStartAgain }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
     const currentQuestion =  questions[currentQuestionIndex];
@@ -19,8 +20,8 @@ export default function Questions({ questions, handlerShowResult }) {
         }
     }
 
-    const finisQuiz = function () {
-        handlerShowResult(score);
+    if (currentQuestionIndex === questions.length) {
+        return (<QuizResult score={score} handlerRestartQuiz={handlerStartAgain} />);
     }
 
     return (
@@ -30,12 +31,13 @@ export default function Questions({ questions, handlerShowResult }) {
           spacing={2}
         >
             <Typography variant='h4' mt={3}>Question: {currentQuestionIndex + 1} out of {questions.length}</Typography>
-            <QuestionCard key={currentQuestion.id}
+            <QuestionCard 
+                key={currentQuestion.id}
                 question={currentQuestion.question} 
                 translation={currentQuestion.translation} 
                 correctAnswer={currentQuestion.answer}
                 hint={currentQuestion.hint}
-                nextQuestion={isLastQuestion? finisQuiz : nextQuestion}
+                nextQuestion={nextQuestion}
                 isLastQuestion={isLastQuestion}
             />
         </Stack>
