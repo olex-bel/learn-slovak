@@ -4,7 +4,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 export default function QuizResult({ score, handlerRestartQuiz }) {
     return (
-        <Stack>
+        <Stack paddingTop={'10rem'}>
             <Typography>
                 You score is {score}
             </Typography>

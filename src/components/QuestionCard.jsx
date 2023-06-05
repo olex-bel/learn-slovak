@@ -32,14 +32,21 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
             }
         }>
             <CardContent sx={{
-                minHeight: '180px',
+                minHeight: '200px',
             }}>
                 <Stack 
                     justifyContent="center"
                     alignItems="center"
                 >
                     <Box mt="1.5rem">
-                        {reactStringReplace(question, /(\(.+\))/, (match) => <>{match}<TextField variant="standard" sx={{input: {textAlign: "center"}}} inputRef={userInputRef} size="small"/></> )}
+                        <Typography variant="h6" align="center" gutterBottom>{reactStringReplace(question, /(\(.+\))/, (match) => ' ... ' + match)}</Typography>
+                        <TextField 
+                            label="Your Answer"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            inputRef={userInputRef}
+                        />
                     </Box>
                     <Box mt="0.8rem">({translation})</Box>
                     {showHint && <Typography variant="body2" mt="2rem" color="success.main">{hint}</Typography>}
@@ -54,12 +61,14 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
                     }
                 </Stack>
             </CardContent>
-            <CardActions>
-                <Button variant="outlined" onClick={hintHandler}>Hint</Button>
+            <CardActions sx={{
+                marginLeft: '1rem',
+            }}>
+                {!isAnswered && <Button variant="outlined" onClick={hintHandler}>Hint</Button>}
                 {isAnswered? 
-                    <Button variant="contained" onClick={() => nextQuestion(isCorrectAnswer)}>{isLastQuestion? "Finish" : "Next"}</Button>
+                    <Button variant="contained" size="large" onClick={() => nextQuestion(isCorrectAnswer)}>{isLastQuestion? "Finish" : "Next"}</Button>
                     :
-                    <Button variant="contained" onClick={checkAnswerHandler}>Check</Button>
+                    <Button variant="contained" size="large" onClick={checkAnswerHandler}>Check</Button>
                 }
             </CardActions>
         </Card>

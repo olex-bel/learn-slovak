@@ -36,7 +36,7 @@ export default function Quiz( { questions, rules, selectedTopic } ) {
             startIcon={<PlayArrowIcon/>} 
             onClick={() => startQuiz()}
             sx={{
-                mt: '2rem',
+                mt: '10rem',
             }}
         >
           Start
