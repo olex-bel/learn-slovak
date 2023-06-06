@@ -9,6 +9,7 @@ import { Stack, Button } from '@mui/material'
 export default function Quiz( { questions, rules, selectedTopic } ) {
     const [quizQuestions, setQuizQuestions] = useState([]);
     const [questionsBySelectedTopic, setQuestionsBySelectedTopic] = useState([]);
+    const [quizCounter, setQuizCounter] = useState(1);
 
     useEffect(() => {
       if (selectedTopic !== 0) {
@@ -26,6 +27,7 @@ export default function Quiz( { questions, rules, selectedTopic } ) {
           hint: rules[item.ruleId],
         })
       ));
+      setQuizCounter(quizCounter + 1);
     };
 
     if (quizQuestions.length === 0) {
@@ -50,7 +52,7 @@ export default function Quiz( { questions, rules, selectedTopic } ) {
           alignItems="center"
           spacing={2}
         >  
-          <Questions questions={quizQuestions} />
+          <Questions key={quizCounter} questions={quizQuestions} handlerStartAgain={startQuiz} />
         </Stack>
     )
 }

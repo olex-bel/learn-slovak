@@ -45,6 +45,9 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
                             variant="outlined"
                             size="small"
                             fullWidth
+                            inputProps={{
+                                autoCapitalize: 'none',
+                            }}
                             inputRef={userInputRef}
                         />
                     </Box>
