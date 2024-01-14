@@ -1,10 +1,15 @@
 
 import { Button, Typography, Stack } from "@mui/material";
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
-export default function QuizResult({ score, handlerRestartQuiz }) {
+type QuizResultProps = {
+    score: number;
+    handlerRestartQuiz: () => void;
+}
+
+export default function QuizResult({ score, handlerRestartQuiz } : QuizResultProps) {
     return (
-        <Stack paddingTop={'10rem'}>
+        <Stack paddingTop={"10rem"}>
             <Typography>
                 You score is {score}
             </Typography>

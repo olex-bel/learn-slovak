@@ -3,15 +3,24 @@ import { Box, Button, Stack, TextField, Typography, Card, CardContent, CardActio
 import { useRef, useState } from "react";
 import reactStringReplace from "react-string-replace";
 
-export default  function QuestionCard({question, translation, correctAnswer, hint, isLastQuestion, nextQuestion}) {
-    const userInputRef = useRef();
-    const [userAnswer, setUserAnswer] = useState('');
+type QuestionCardProps = {
+    question: string;
+    translation: string;
+    correctAnswer: string;
+    hint: string;
+    isLastQuestion: boolean;
+    nextQuestion: (isCorrectAnswer: boolean) => void;
+}
+
+export default  function QuestionCard({question, translation, correctAnswer, hint, isLastQuestion, nextQuestion} : QuestionCardProps) {
+    const userInputRef = useRef<HTMLInputElement>();
+    const [userAnswer, setUserAnswer] = useState("");
     const [showHint, setShowHint] = useState(false);
     const isAnswered = !!userAnswer;
     const isCorrectAnswer = isAnswered && correctAnswer === userAnswer;
 
     const checkAnswerHandler = function () {
-        const answer = userInputRef.current.value;
+        const answer = userInputRef.current!.value;
         
         if (!answer) {
             return;
@@ -19,34 +28,34 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
         
         setUserAnswer(answer.toLowerCase().trim());
         setShowHint(false);
-    }
+    };
 
     const hintHandler = function () {
         setShowHint(true);
-    }
+    };
 
     return (
         <Card sx={
             {
-                width: { xs: '360px' },
+                width: { xs: "360px" },
             }
         }>
             <CardContent sx={{
-                minHeight: '200px',
+                minHeight: "200px",
             }}>
                 <Stack 
                     justifyContent="center"
                     alignItems="center"
                 >
                     <Box mt="1.5rem">
-                        <Typography variant="h6" align="center" gutterBottom>{reactStringReplace(question, /(\(.+\))/, (match) => ' ... ' + match)}</Typography>
+                        <Typography variant="h6" align="center" gutterBottom>{reactStringReplace(question, /(\(.+\))/, (match) => " ... " + match)}</Typography>
                         <TextField 
                             label="Your Answer"
                             variant="outlined"
                             size="small"
                             fullWidth
                             inputProps={{
-                                autoCapitalize: 'none',
+                                autoCapitalize: "none",
                             }}
                             inputRef={userInputRef}
                         />
@@ -58,14 +67,14 @@ export default  function QuestionCard({question, translation, correctAnswer, hin
                             {isCorrectAnswer? 
                                 <Typography variant="body2" mt="2rem" color="success.main">Correct answer</Typography>
                                 :
-                                <Typography variant="body2" mt="2rem" color="error.main">Sorry...the correct answer is "{correctAnswer}"</Typography>
+                                <Typography variant="body2" mt="2rem" color="error.main">Sorry...the correct answer is &quot;{correctAnswer}&quot;</Typography>
                             }
                         </Box>
                     }
                 </Stack>
             </CardContent>
             <CardActions sx={{
-                marginLeft: '1rem',
+                marginLeft: "1rem",
             }}>
                 {!isAnswered && <Button variant="outlined" onClick={hintHandler}>Hint</Button>}
                 {isAnswered? 
