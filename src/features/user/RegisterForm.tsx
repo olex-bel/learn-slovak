@@ -16,6 +16,7 @@ export default function RegisterForm() {
     const isLoading = false;
     const emailRef = useRef<HTMLInputElement>();
     const passwordRef = useRef<HTMLInputElement>();
+    const nameRef = useRef<HTMLInputElement>();
     const navigate = useNavigate();
     const id = useId();
 
@@ -24,10 +25,16 @@ export default function RegisterForm() {
 
         const email = emailRef.current?.value || "";
         const password = passwordRef.current?.value || "";
+        const name = nameRef.current?.value || "";
 
         const { error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: {
+                    name,
+                },
+            },
         });
 
         if (!error) {
@@ -55,6 +62,17 @@ export default function RegisterForm() {
 
             <Box component={Form} method="post" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            inputRef={nameRef}
+                            required
+                            fullWidth
+                            id={`${id}-name`}
+                            label="Your name"
+                            name="name"
+                            autoComplete="name"
+                        />
+                    </Grid>
                     <Grid item xs={12}>
                         <TextField
                             inputRef={emailRef}

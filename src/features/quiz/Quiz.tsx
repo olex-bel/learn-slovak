@@ -1,8 +1,10 @@
 
 import { useState } from "react";
+import { useQuery } from "react-query";
 import Questions from "./Questions";
-import { Stack, Box } from "@mui/material";
-import useQuestions from "../../hooks/useQuestions";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import { getRandomQuestions } from "../../services/api";
 
 type QuizProps = {
     topicId: number;
@@ -10,7 +12,7 @@ type QuizProps = {
 
 export default function Quiz( { topicId } : QuizProps ) {
     const [quizCounter, setQuizCounter] = useState(1);
-    const {questions, isLoading, errorMessage} = useQuestions(topicId);
+    const {isLoading, isError, data} = useQuery(["topics", topicId], () => getRandomQuestions(topicId));
    
     const startQuiz = () => {
         setQuizCounter(quizCounter + 1);
@@ -22,15 +24,9 @@ export default function Quiz( { topicId } : QuizProps ) {
         );
     }
 
-    if (errorMessage) {
+    if (isError) {
         return (
-            <Box>{errorMessage}</Box>
-        );
-    }
-
-    if (!questions) {
-        return (
-            <Box>Something when wron!</Box>
+            <Box sx={{ color: "error" }}>Cannot get questions</Box>
         );
     }
 
@@ -40,7 +36,7 @@ export default function Quiz( { topicId } : QuizProps ) {
             alignItems="center"
             spacing={2}
         >  
-            <Questions questions={questions} handlerStartAgain={startQuiz} />
+            <Questions key={quizCounter} questions={data} handlerStartAgain={startQuiz} />
         </Stack>
     );
 }

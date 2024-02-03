@@ -2,7 +2,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Outlet, Navigate, useLocation } from "react-router-dom";
-import { Box, CircularProgress } from "@mui/material";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function RequireAuth() {
     const auth = useContext(AuthContext);
@@ -19,6 +20,6 @@ export default function RequireAuth() {
     return (
         auth.session
             ? <Outlet />
-            : <Navigate to="/login" state={{ from: location }} replace />
+            : <Navigate to="/start" state={{ from: location }} replace />
     );
 }

@@ -1,33 +1,51 @@
 
+import { useQuery } from "react-query";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import useTopics from "../../hooks/useTopics";
-import TopicCard from "./TopicCard";
+import Topic from "./Topic";
+import { getTopics } from "../../services/api";
 
-export default function TopicsGrid() {
-    const { topics, isLoading, errorMessage } = useTopics();
+type TopicsGridProps = {
+    level: string;
+};
 
-    if (isLoading && !topics) {
+const CACHE_TIME = 60 * 60 * 1000; // the time to keep data after unmount
+const STALE_TIME = 15 * 60 * 1000;
+
+export default function TopicsGrid({ level }: TopicsGridProps) {
+    const {isLoading, isError, data} = useQuery(["topics", level], () => getTopics(level), {
+        cacheTime: CACHE_TIME,
+        staleTime: STALE_TIME,
+        keepPreviousData: true,
+    });
+
+    if (isLoading && !data) {
         return (
             <Box>Loading...</Box>
         );
     }
 
-    if (errorMessage) {
+    if (isError) {
         return (
-            <Box>{errorMessage}</Box>
+            <Box sx={{ color: "error" }}>Cannot get list of topics</Box>
         );
     }
 
     return (
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            {topics?.map((topic) => {
+        <Box sx={{
+            display: "flex",
+            gap: 4,
+            justifyContent: "center",
+            flexDirection: {
+                xs: "column",
+                md: "row",
+            },
+            flexWrap: "wrap",
+        }}>
+            {data?.map((topic) => {
                 return (
-                    <Grid item xs={6} key={topic.id}>
-                        <TopicCard {...topic} />
-                    </Grid>
+                    <Topic key={topic.id} {...topic} sx={{ flexBasis: "300px" }} />
                 );
             })}
-        </Grid>
+        </Box>
     );
 } 

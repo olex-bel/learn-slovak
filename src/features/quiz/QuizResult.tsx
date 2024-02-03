@@ -9,17 +9,17 @@ type QuizResultProps = {
 
 export default function QuizResult({ score, handlerRestartQuiz } : QuizResultProps) {
     return (
-        <Stack paddingTop={"10rem"}>
-            <Typography>
-                You score is {score}
+        <Stack paddingTop={"10rem"} gap={2}>
+            <Typography variant="h3">
+                Ви набрали {score} балів
             </Typography>
             <Button 
                 color="success" 
-                size="large" 
-                startIcon={<RestartAltIcon/>} 
+                size="large"
+                startIcon={<RestartAltIcon />} 
                 onClick={handlerRestartQuiz}
             >
-                Try again
+                Спробувати ще раз
             </Button>
         </Stack>
     );

@@ -3,13 +3,7 @@ import { useState } from "react";
 import QuestionCard from "./QuestionCard";
 import QuizResult from "./QuizResult";
 
-export type QuestionType = {
-    id: number;
-    question: string;
-    translation: string;
-    answer: string;
-    hint: string;
-}
+import type { QuestionType } from "../../services/api";
 
 type QuestionsProps = {
     questions: QuestionType[];
@@ -42,13 +36,13 @@ export default function Questions({ questions, handlerStartAgain } : QuestionsPr
             alignItems="center"
             spacing={2}
         >
-            <Typography variant='h4' mt={3}>Question: {currentQuestionIndex + 1} out of {questions.length}</Typography>
+            <Typography variant='h4' mt={3}>Питання {currentQuestionIndex + 1} з {questions.length}</Typography>
             <QuestionCard 
                 key={currentQuestion.id}
                 question={currentQuestion.question} 
                 translation={currentQuestion.translation} 
                 correctAnswer={currentQuestion.answer}
-                hint={currentQuestion.hint}
+                hint={currentQuestion.answer}
                 nextQuestion={nextQuestion}
                 isLastQuestion={isLastQuestion}
             />

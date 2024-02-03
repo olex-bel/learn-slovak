@@ -5,12 +5,21 @@ import { AuthContext } from "./context/AuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import RequireAuth from "./features/auth/RequireAuth";
 import Home from "./pages/Home";
+import GetStarted from "./pages/GetStarted";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Lesson from "./pages/Lesson";
+import Topics from "./pages/Topics";
+import NotFound from "./pages/NotFound";
 
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
-const queryClient = new QueryClient()
 const router = createBrowserRouter([
     {
         element: (<MainLayout />),
@@ -26,8 +35,17 @@ const router = createBrowserRouter([
                     {
                         path: "/lesson/:id",
                         element: <Lesson />,
-                    }
+                    },
+                    {
+                        path: "/topics/:level",
+                        element: <Topics />,
+                    },
                 ]
+            },
+            {
+                path: "/start",
+                element: <GetStarted />,
+
             },
             {
                 path: "/login",
@@ -37,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
+            },
+            {
+                path: "*",
+                element: <NotFound />
             }
         ],
     },

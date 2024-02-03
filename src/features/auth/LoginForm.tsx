@@ -41,7 +41,6 @@ export default function LoginForm() {
         }
     
         navigate("/");
-        console.log(JSON.stringify(error));
     };
 
     return (
@@ -57,7 +56,7 @@ export default function LoginForm() {
                 <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-          Sign in
+                Sign in
             </Typography>
 
             {errorMessage && <Typography color="error">{errorMessage}</Typography>}
@@ -91,12 +90,12 @@ export default function LoginForm() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-            Sign In
+                    Sign In
                 </Button>
                 <Grid container>
                     <Grid item xs>
                         <Link href="#" variant="body2">
-                Forgot password?
+                            Forgot password?
                         </Link>
                     </Grid>
                     <Grid item>
