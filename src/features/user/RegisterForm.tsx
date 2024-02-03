@@ -39,6 +39,8 @@ export default function RegisterForm() {
 
         if (!error) {
             navigate("/login");
+        } else {
+            setErrorMessage("");
         }
     };
 

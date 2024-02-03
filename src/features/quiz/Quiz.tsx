@@ -36,7 +36,7 @@ export default function Quiz( { topicId } : QuizProps ) {
             alignItems="center"
             spacing={2}
         >  
-            <Questions key={quizCounter} questions={data} handlerStartAgain={startQuiz} />
+            <Questions key={quizCounter} questions={data!} handlerStartAgain={startQuiz} />
         </Stack>
     );
 }
