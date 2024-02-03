@@ -62,7 +62,9 @@ const router = createBrowserRouter([
             }
         ],
     },
-]);
+], {
+    basename: "/learn-slovak",
+});
 
 function App() {
     const auth = useAuth();
