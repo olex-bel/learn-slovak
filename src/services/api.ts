@@ -19,6 +19,13 @@ export type Profile = {
     name: string;
 };
 
+export type Word = {
+    word: string,
+    meaning: string,
+    example: string,
+    translation: string;
+};
+
 export async function getTopics(level: string) {
     const { data, error } = await supabase.from("topics").select().eq("level", level.toUpperCase());
 
@@ -52,3 +59,15 @@ export async function logout() {
         throw error;
     }
 }
+
+export async function getWords() {
+    const { data, error } = await supabase.from("words").select();
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data as Word[];
+}
+
+

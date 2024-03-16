@@ -10,6 +10,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Lesson from "./pages/Lesson";
 import Topics from "./pages/Topics";
+import Words from "./pages/Words";
+import LeanWords from "./pages/LearnWords";
+import TestWords from "./pages/TestWords";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -39,6 +42,20 @@ const router = createBrowserRouter([
                     {
                         path: "/topics/:level",
                         element: <Topics />,
+                    },
+                    {
+                        path: "/words",
+                        children: [{
+                            index: true,
+                            element: <Words />,
+                        },
+                        {
+                            path: "learn",
+                            element: <LeanWords />
+                        },  {
+                            path: "test",
+                            element: <TestWords />
+                        }]
                     },
                 ]
             },
