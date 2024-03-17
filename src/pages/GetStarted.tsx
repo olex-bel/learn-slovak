@@ -28,18 +28,18 @@ export default function GetStarted() {
                     }}
                 >
                     <Stack sx={{ flexBasis: "50%" }}>
-                        <Typography mb={2} variant="h6" sx={{ textAlign: { xs: "center", md: "start"}}}>Welcome to Your Slovak Language Learning Journey!</Typography>
-                        <Typography mb={1}>Start mastering Slovak effortlessly with our interactive app.</Typography>
+                        <Typography mb={2} variant="h6" sx={{ textAlign: { xs: "center", md: "start"}}}>Ласкаво просимо до вивчення словацької мови!</Typography>
+                        <Typography mb={1}>Почніть вивчати словацьку мову без особливих зусиль з нашим інтерактивним додатком.</Typography>
                         <Typography mb={1}>
-                            Boost your Slovak skills with interactive grammar exercises.
-                            Our interactive platform helps you automate correct usage, making grammar second nature.
-                            Plus, you can easily add new words and learn them seamlessly on our site.
+                            Покращуйте свої навички словацької за допомогою інтерактивних граматичних вправ.
+                            Наша інтерактивна платформа допоможе вам автоматизувати правильне вживання слів, зробивши граматику другою натурою.
+                            Крім того, ви можете легко додавати нові слова та вивчати їх на нашому сайті.
                         </Typography>
                     </Stack>
 
                     <Stack gap={2} sx={{ alignSelf: "center" }}>
-                        <Button component={RouterLink} to="/register" variant="contained">Create a new account</Button>
-                        <Button component={RouterLink} to="/login" variant="outlined">I already have an account</Button>
+                        <Button component={RouterLink} to="/register" variant="contained">Створити обліковий запис</Button>
+                        <Button component={RouterLink} to="/login" variant="outlined">У мене вже є обліковий запис</Button>
                     </Stack>
                 </Box>
             </Box>

@@ -70,4 +70,10 @@ export async function getWords() {
     return data as Word[];
 }
 
-
+export async function addWord({word, translation, example, meaning} : Word) {
+    const { error } = await supabase
+        .from("words")
+        .insert({ word, translation, example, meaning });
+    
+    return error;
+}
