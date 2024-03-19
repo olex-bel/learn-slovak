@@ -1,10 +1,9 @@
-import Container from "@mui/material/Container";
 import LearnngCategoryGrid from "../features/categories/LearningCategoryGrid";
 
-export default function Home() {
+export function Component() {
     return (
-        <Container component="main">
-            <LearnngCategoryGrid title="Навчальні блоки" />
-        </Container>
+        <LearnngCategoryGrid title="Навчальні блоки" />
     );
 }
+
+Component.displayName = "Home";

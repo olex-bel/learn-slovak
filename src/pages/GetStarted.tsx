@@ -1,13 +1,12 @@
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { Link as RouterLink } from "react-router-dom";
 
-export default function GetStarted() {
+export function Component() {
     return (
-        <Container component="main">
+        <>
             <Box sx={
                 { 
                     height: "calc(100vh - 64px)",
@@ -43,6 +42,8 @@ export default function GetStarted() {
                     </Stack>
                 </Box>
             </Box>
-        </Container>
+        </>
     );
 }
+
+Component.displayName = "GetStarted";

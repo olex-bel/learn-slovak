@@ -1,12 +1,11 @@
 import { useState } from "react";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import LearnWordsMenu from "../features/words/LearnWordsMenu";
 import AddWordDialog from "../features/words/AddWordDialog";
 
-export default function Words() {
+export function Component() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleClose = () => {
@@ -18,7 +17,7 @@ export default function Words() {
     };
     
     return (
-        <Container component="main" sx={{ mt: 4 }}>
+        <>
             <Typography variant="h3" sx={{ textAlign: "center", mt: 2, mb: 4 }}>
                 Словацький словник.
             </Typography>
@@ -39,6 +38,8 @@ export default function Words() {
             </Fab>
 
             <AddWordDialog open={modalOpen} onClose={handleClose} />
-        </Container>
+        </>
     );
 }
+
+Component.displayName = "Words";

@@ -1,10 +1,9 @@
-import Container from "@mui/material/Container";
 import LoginForm from "../features/auth/LoginForm";
 
-export default function Login() {
+export function Component() {
     return (
-        <Container component="main" maxWidth="xs">
-            <LoginForm />
-        </Container>
+        <LoginForm />
     );
 }
+
+Component.displayName = "Login";

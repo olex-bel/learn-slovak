@@ -9,7 +9,7 @@ export default function MainLayout() {
             <Box sx={{ flexGrow: 1 }}>
                 <CustomAppBar /> 
             </Box>
-            <Container>
+            <Container component="main" sx={{ mt: 4 }}>
                 <Outlet />            
             </Container>
         </>

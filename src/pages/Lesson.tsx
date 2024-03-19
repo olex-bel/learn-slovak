@@ -1,13 +1,12 @@
-import Container from "@mui/material/Container";
 import { useParams } from "react-router-dom";
 import Quiz from "../features/quiz/Quiz";
 
-export default function Lesson() {
+export function Component() {
     const { id } = useParams();
 
     return (
-        <Container component="main" sx={{ mt: 4 }}>
-            <Quiz topicId={+id!} />
-        </Container>
+        <Quiz topicId={+id!} />
     );
 }
+
+Component.displayName = "Lesson";

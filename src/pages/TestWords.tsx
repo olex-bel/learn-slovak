@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Container from "@mui/material/Container";
 import TestWordCardList from "../features/words/TestWordCardList";
 
-export default function LeanWords() {
+export function Component() {
     const navigate = useNavigate();
 
     const handleFinish = () => {
@@ -10,8 +9,8 @@ export default function LeanWords() {
     };
 
     return (
-        <Container component="main" sx={{ mt: 4 }}>
-            <TestWordCardList onFinish={handleFinish} />
-        </Container>
+        <TestWordCardList onFinish={handleFinish} />
     );
 }
+
+Component.displayName = "TestWords";

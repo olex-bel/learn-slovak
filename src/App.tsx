@@ -4,14 +4,8 @@ import useAuth from "./hooks/useAuth";
 import { AuthContext } from "./context/AuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import RequireAuth from "./features/auth/RequireAuth";
-import Home from "./pages/Home";
-import GetStarted from "./pages/GetStarted";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Lesson from "./pages/Lesson";
-import Topics from "./pages/Topics";
-import Words from "./pages/Words";
-import LeanWords from "./pages/LearnWords";
 import TestWords from "./pages/TestWords";
 import NotFound from "./pages/NotFound";
 
@@ -33,45 +27,43 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <Home />,
+                        lazy: () => import("./pages/Home"),
                     },
                     {
                         path: "/lesson/:id",
-                        element: <Lesson />,
+                        lazy: () => import("./pages/Lesson"),
                     },
                     {
                         path: "/topics/:level",
-                        element: <Topics />,
+                        lazy: () => import("./pages/Topics"),
                     },
                     {
                         path: "/words",
                         children: [{
                             index: true,
-                            element: <Words />,
+                            lazy: () => import("./pages/Words"),
                         },
                         {
                             path: "learn",
-                            element: <LeanWords />
+                            lazy: () => import("./pages/LearnWords"),
                         },  {
                             path: "test",
-                            element: <TestWords />
+                            lazy: () => import("./pages/TestWords"),
                         }]
                     },
                 ]
             },
             {
                 path: "/start",
-                element: <GetStarted />,
-
+                lazy: () => import("./pages/GetStarted"),
             },
             {
                 path: "/login",
-                element: <Login />,
-
+                lazy: () => import("./pages/Login"),
             },
             {
                 path: "/register",
-                element: <Register />,
+                lazy: () => import("./pages/Register"),
             },
             {
                 path: "*",

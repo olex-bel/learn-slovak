@@ -1,10 +1,9 @@
-import Container from "@mui/material/Container";
 import RegisterForm from "../features/user/RegisterForm";
 
-export default function Register() {
+export function Component() {
     return (
-        <Container component="main" maxWidth="xs">
-            <RegisterForm />
-        </Container>
+        <RegisterForm />
     );
 }
+
+Component.displayName = "Register";
