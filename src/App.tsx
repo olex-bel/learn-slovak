@@ -4,9 +4,6 @@ import useAuth from "./hooks/useAuth";
 import { AuthContext } from "./context/AuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import RequireAuth from "./features/auth/RequireAuth";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import TestWords from "./pages/TestWords";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
