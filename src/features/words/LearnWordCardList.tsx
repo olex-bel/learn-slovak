@@ -41,6 +41,7 @@ export default function LernWordCardList({ onFinish } : LernCardListProps) {
             justifyContent="center"
             alignItems="center"
             spacing={2}
+            mt={2}
         >
             <LernCard key={currentIndex} word={currentCard.word} info={currentCard.info} isLastWord={isLastWord} onNextCard={isLastWord? onFinish : handleNext} />
         </Stack>

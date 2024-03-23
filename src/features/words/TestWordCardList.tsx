@@ -41,6 +41,7 @@ export default function TestCardList({ onFinish } : TestCardListProps) {
             justifyContent="center"
             alignItems="center"
             spacing={2}
+            mt={2}
         >
             <TestWordCard key={currentIndex} {...currentCard} isLastQuestion={isLastQuestion} onNextCard={isLastQuestion? onFinish: handleNext } />
         </Stack>
