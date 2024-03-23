@@ -5,6 +5,7 @@ import { AuthContext } from "./context/AuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import RequireAuth from "./features/auth/RequireAuth";
 import NotFound from "./pages/NotFound";
+import Typography from "@mui/material/Typography";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -21,6 +22,9 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <RequireAuth />,
+                handle: {
+                    crumb: () => "Головна",
+                },
                 children: [
                     {
                         index: true,
@@ -29,23 +33,38 @@ const router = createBrowserRouter([
                     {
                         path: "/lesson/:id",
                         lazy: () => import("./pages/Lesson"),
+                        handle: {
+                            crumb: () => "Вправа",
+                        },
                     },
                     {
                         path: "/topics/:level",
                         lazy: () => import("./pages/Topics"),
+                        handle: {
+                            crumb: () => "Вправи",
+                        },
                     },
                     {
                         path: "/words",
                         children: [{
                             index: true,
                             lazy: () => import("./pages/Words"),
+                            handle: {
+                                crumb: () => "Словник",
+                            },
                         },
                         {
                             path: "learn",
                             lazy: () => import("./pages/LearnWords"),
+                            handle: {
+                                crumb: () => "Вивчення слів",
+                            },
                         },  {
                             path: "test",
                             lazy: () => import("./pages/TestWords"),
+                            handle: {
+                                crumb: () => "Перевірка знань",
+                            },
                         }]
                     },
                 ]
