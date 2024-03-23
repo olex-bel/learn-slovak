@@ -5,7 +5,6 @@ import { AuthContext } from "./context/AuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import RequireAuth from "./features/auth/RequireAuth";
 import NotFound from "./pages/NotFound";
-import Typography from "@mui/material/Typography";
 
 const queryClient = new QueryClient({
     defaultOptions: {
