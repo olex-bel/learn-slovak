@@ -15,6 +15,7 @@ export default function LearnWordsMenu() {
         }}>
             <WordMenuItem name="Вивчення слів" url="/words/learn" sx={{ flexBasis: "300px" }} />
             <WordMenuItem name="Перевірка знань" url="/words/test" sx={{ flexBasis: "300px" }} />
+            <WordMenuItem name="Керування словником" url="/words/manage-words" sx={{ flexBasis: "300px" }} />
         </Box>
     );
 }

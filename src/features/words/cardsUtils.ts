@@ -12,7 +12,7 @@ export type TestCard = {
 };
 
 export async function getLearnCards(): Promise<LearnCard[]> {
-    const words = await getWords();
+    const { words}  = await getWords();
 
     return words.map((item: Word) => {
         return [{
@@ -29,7 +29,7 @@ export async function getLearnCards(): Promise<LearnCard[]> {
 }
 
 export async function getTestCards():  Promise<TestCard[]> {
-    const words = await getWords();
+    const { words } = await getWords();
 
     return words.map((item: Word) => {
         return [{

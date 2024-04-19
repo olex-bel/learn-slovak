@@ -26,6 +26,16 @@ export type Word = {
     translation: string;
 };
 
+export type WordList = {
+    total: number | null;
+    words: Word[];
+};
+
+type PaginationRange = {
+    from: number;
+    to: number;
+};
+
 export async function getTopics(level: string) {
     const { data, error } = await supabase.from("topics").select().eq("level", level.toUpperCase());
 
@@ -60,20 +70,49 @@ export async function logout() {
     }
 }
 
-export async function getWords() {
-    const { data, error } = await supabase.from("words").select();
+export async function getWords(includeTotalCount?: boolean, pagination?: PaginationRange) : Promise<WordList> {
+    let query = supabase.from("words").select("*", {
+        count: includeTotalCount? "exact" : undefined
+    });
+
+    if (pagination) {
+        query = query.range(pagination.from, pagination.to);
+    }
+
+    const { data, error, count } = await query;
 
     if (error) {
         throw new Error(error.message);
     }
 
-    return data as Word[];
+    return {
+        words: data as Word[],
+        total: count,
+    };
 }
 
 export async function addWord({word, translation, example, meaning} : Word) {
     const { error } = await supabase
         .from("words")
         .insert({ word, translation, example, meaning });
+    
+    return error;
+}
+
+export async function updateWord({word, translation, example, meaning} : Word) {
+    const { error } = await supabase
+        .from("words")
+        .update({translation, example, meaning})
+        .eq("word", word);
+    
+    return error;
+}
+
+export async function deleteWord(word: string) {
+    const { error } = await supabase
+        .from("words")
+        .delete()
+        .eq("word", word);
     
     return error;
 }

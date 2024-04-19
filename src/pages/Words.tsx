@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import LearnWordsMenu from "../features/words/LearnWordsMenu";
-import AddWordDialog from "../features/words/AddWordDialog";
+import AddWordDialog from "../features/words/dialogs/AddWordDialog";
 
 export function Component() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);

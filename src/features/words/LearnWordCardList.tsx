@@ -15,13 +15,13 @@ export default function LernWordCardList({ onFinish } : LernCardListProps) {
 
     if (isLoading && !data) {
         return (
-            <Box>Loading...</Box>
+            <Box>Завантаження...</Box>
         );
     }
 
     if (isError || !data) {
         return (
-            <Box sx={{ color: "error" }}>Cannot get questions</Box>
+            <Box sx={{ color: "error" }}>Ой...виникла помилка.</Box>
         );
     }
 

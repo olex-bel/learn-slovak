@@ -33,7 +33,7 @@ const router = createBrowserRouter([
                         path: "/lesson/:id",
                         lazy: () => import("./pages/Lesson"),
                         handle: {
-                            crumb: () => "Вправа",
+                            crumb: () => "Урок",
                         },
                     },
                     {
@@ -45,26 +45,34 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "/words",
-                        children: [{
-                            index: true,
-                            lazy: () => import("./pages/Words"),
-                            handle: {
-                                crumb: () => "Словник",
-                            },
+                        handle: {
+                            crumb: () => "Словник",
                         },
-                        {
-                            path: "learn",
-                            lazy: () => import("./pages/LearnWords"),
-                            handle: {
-                                crumb: () => "Вивчення слів",
+                        children: [
+                            {
+                                index: true,
+                                lazy: () => import("./pages/Words"),
                             },
-                        },  {
-                            path: "test",
-                            lazy: () => import("./pages/TestWords"),
-                            handle: {
-                                crumb: () => "Перевірка знань",
-                            },
-                        }]
+                            {
+                                path: "learn",
+                                lazy: () => import("./pages/LearnWords"),
+                                handle: {
+                                    crumb: () => "Вивчення слів",
+                                },
+                            },  {
+                                path: "test",
+                                lazy: () => import("./pages/TestWords"),
+                                handle: {
+                                    crumb: () => "Перевірка знань",
+                                },
+                            }, {
+                                path: "manage-words",
+                                lazy: () => import("./pages/ManageWords"),
+                                handle: {
+                                    crumb: () => "Керування словником",
+                                },
+                            }
+                        ]
                     },
                 ]
             },
