@@ -6,6 +6,7 @@ import WordsTable from "./WordsTable";
 import { WordsManagerContext } from "../../store/WordsManagerContext";
 import AddWordDialog from "./dialogs/AddWordDialog";
 import EditWordDialog from "./dialogs/EditWordDialog";
+import DeleteWordDialog from "./dialogs/DeleteWordDIalog";
 import type { Word } from "../../services/api";
 
 export default function WordsManager() {
@@ -17,7 +18,7 @@ export default function WordsManager() {
         from,
         to,
     }));
-    const { showAddWordDialog, showEditWordDialog } = useContext(WordsManagerContext);
+    const { showAddWordDialog, showEditWordDialog, showDeleteWordDialog } = useContext(WordsManagerContext);
 
    
     const handleChangePage = (_: unknown, newPage: number) => {
@@ -33,8 +34,8 @@ export default function WordsManager() {
     const handleEditWord = (word: Word) => {
         showEditWordDialog(word);
     };
-    const handleDeleteWord = () => {
-        
+    const handleDeleteWord = (word: Word) => {
+        showDeleteWordDialog(word);
     };
 
     if (isLoading && !data) {
@@ -68,6 +69,7 @@ export default function WordsManager() {
             />
             <AddWordDialog />
             <EditWordDialog />
+            <DeleteWordDialog />
         </>
     );
 }
