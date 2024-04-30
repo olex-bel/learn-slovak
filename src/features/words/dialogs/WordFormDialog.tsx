@@ -9,6 +9,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import CircularProgress  from "@mui/material/CircularProgress";
+import { Typography } from "@mui/material";
 
 import type { Word } from "../../../services/api";
 
@@ -16,6 +17,7 @@ type WordFormDualogProps = {
     editWord?: Word;
     open: boolean;
     loading: boolean;
+    error: boolean;
     onClose: () => void;
     onSubmit: (word: Word) => void;
 };
@@ -27,7 +29,7 @@ const initialValue: Word = {
     meaning: "",
 };
 
-export default function WordFormDualog({ editWord, open, loading, onClose, onSubmit } : WordFormDualogProps) {
+export default function WordFormDualog({ editWord, open, error, loading, onClose, onSubmit } : WordFormDualogProps) {
     const [formFields, setFormFields] = useState<Word>(editWord || initialValue);
     const isEditMode = !!editWord;
 
@@ -75,6 +77,9 @@ export default function WordFormDualog({ editWord, open, loading, onClose, onSub
                             marginLeft: "-12px",
                         }}
                     />
+                }
+                {
+                    error && <Typography color="error" align="center" sx={{ pb: 1 }}>Вибачте, виникла помилка під час збереження даних. Будь ласка, спробуйте ще раз.</Typography>
                 }
                 <DialogContentText>
                     {isEditMode? "Будь ласка, внесіть необхідні зміни у відповідні поля." : "Щоб додати слово до словника, заповніть поля форми."}
