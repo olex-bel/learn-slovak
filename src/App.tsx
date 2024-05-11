@@ -30,6 +30,13 @@ const router = createBrowserRouter([
                         lazy: () => import("./pages/Home"),
                     },
                     {
+                        path: "set-password",
+                        lazy: () => import("./pages/SetPassword"),
+                        handle: {
+                            crumb: () => "Змінити пароль",
+                        },
+                    },
+                    {
                         path: "/lesson/:id",
                         lazy: () => import("./pages/Lesson"),
                         handle: {
@@ -87,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 lazy: () => import("./pages/Register"),
+            },
+            {
+                path: "/reset-password",
+                lazy: () => import("./pages/ResetPassword"),
             },
             {
                 path: "*",

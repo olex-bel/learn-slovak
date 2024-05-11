@@ -26,7 +26,7 @@ export default function LoginForm() {
         const password = passwordRef.current ? passwordRef.current.value : "";
 
         if (!email || !password) {
-            setErrorMessage("Please enter email and password.");
+            setErrorMessage("Будь ласка, введіть електронну адресу та пароль.");
             return;
         }
 
@@ -36,7 +36,7 @@ export default function LoginForm() {
         });
 
         if (error) {
-            setErrorMessage(error.message || "Oops! Login Failed. Check your username/password and retry.");
+            setErrorMessage(error.message || "Ой! Помилка входу. Перевірте ваше ім'я користувача/пароль та спробуйте ще раз.");
             return;
         }
     
@@ -56,7 +56,7 @@ export default function LoginForm() {
                 <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                Sign in
+                Введіть свої дані для входу
             </Typography>
 
             {errorMessage && <Typography color="error">{errorMessage}</Typography>}
@@ -90,17 +90,17 @@ export default function LoginForm() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-                    Sign In
+                    Увійти в систему
                 </Button>
                 <Grid container>
                     <Grid item xs>
-                        <Link href="#" variant="body2">
-                            Forgot password?
+                        <Link component={RouterLink} to='/reset-password' variant="body2">
+                            Забули пароль?
                         </Link>
                     </Grid>
                     <Grid item>
                         <Link component={RouterLink} to='/register' variant="body2">
-                            {"Don't have an account? Sign Up"}
+                            {"Не маєте облікового запису? Зареєструйтесь."}
                         </Link>
                     </Grid>
                 </Grid>
