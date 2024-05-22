@@ -36,7 +36,9 @@ export default function TestWordCard({ question, answer, isLastQuestion, onNextC
             return;
         }
 
-        if (inputRef.current.value !== answer) {
+        const userAnswer = inputRef.current.value.toLowerCase().trim();
+
+        if (userAnswer !== answer) {
             setAnswerStatus(AnswerStatus.Incorrect);
         } else {
             setAnswerStatus(AnswerStatus.Correct);
